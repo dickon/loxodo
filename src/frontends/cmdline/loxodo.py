@@ -69,7 +69,7 @@ class InteractiveConsole(cmd.Cmd):
         return p
 
     def open_vault(self):
-        print("Opening " + self.vault_file_name + "...")
+        print("Opening " + self.vault_file_name + "...", file=sys.stderr)
         try:
             if os.environ.get('VAULT_PASSWORD'):
                 self.vault_password = os.environ['VAULT_PASSWORD']
@@ -90,7 +90,7 @@ class InteractiveConsole(cmd.Cmd):
         except Vault.VaultFormatError:
             print("Vault integrity check failed.")
             raise
-        print("... Done.\n")
+        print("... Done.\n", file=sys.stderr)
 
     def postloop(self):
         print()
